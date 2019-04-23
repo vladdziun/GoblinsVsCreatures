@@ -50,6 +50,9 @@ namespace HappyFunTimes
         public GameObject[] prefabToSpawnForPlayer;
         private int random;
         private int randomSpawn;
+        private int teamNumber;
+        private bool addedPlayer;
+        private int spawnIndex;
         public GameManager gameManager;
         List<GameObject> spawnPoints;
 
@@ -127,7 +130,17 @@ namespace HappyFunTimes
             if(!GameManager.isGameStarted)
             {
                 m_log.Info("Spawn Player");
-                random = Random.Range(0, 2);
+                //random = Random.Range(0, 2);
+                if (spawnIndex == 3)
+                    spawnIndex = 0;
+
+                if (spawnIndex < 2)
+                    random = 1;
+                else
+                    random = 0;
+
+                spawnIndex++;
+
                 randomSpawn = Random.Range(0, spawnPoints.Count);
                 GameObject gameObject = (GameObject)Instantiate(prefabToSpawnForPlayer[random],
                     new Vector3(spawnPoints[randomSpawn].transform.position.x, spawnPoints[randomSpawn].transform.position.y, 0), Quaternion.identity);

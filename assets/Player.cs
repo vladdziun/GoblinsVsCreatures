@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
             if (gameObject.tag == "PlayerTeam1")
                 animator.SetBool("isWinner", true);
         }
-
-
     }
 
     void OnCollisionEnter2D(Collision2D col)
