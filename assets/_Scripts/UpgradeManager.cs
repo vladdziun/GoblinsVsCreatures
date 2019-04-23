@@ -7,8 +7,10 @@ public class UpgradeManager : MonoBehaviour
 {
     public bool isKey;
     public bool isShovel;
+    public bool isSpeedUp;
     public SpriteRenderer keySprite;
     public SpriteRenderer shovelSprite;
+    public SpriteRenderer speedUpSprite;
 
     private HFTGamepad m_gamepad;
     private HFTInput m_hftInput;
@@ -28,7 +30,12 @@ public class UpgradeManager : MonoBehaviour
             shovelSprite.enabled = true;
             StartCoroutine(Shovel());
         }
-        if(!isKey)
+        if (isSpeedUp && speedUpSprite.enabled == false)
+        {
+            speedUpSprite.enabled = true;
+            StartCoroutine(SpeedUp());
+        }
+        if (!isKey)
             keySprite.enabled = false;
     }
 
@@ -61,5 +68,14 @@ public class UpgradeManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         shovelSprite.enabled = false;
         isShovel = false;
+    }
+
+    IEnumerator SpeedUp()
+    {
+        gameObject.GetComponent<BirdScript>().maxSpeed = 6;
+        yield return new WaitForSeconds(3);
+        gameObject.GetComponent<BirdScript>().maxSpeed = 4;
+        speedUpSprite.enabled = false;
+        isSpeedUp = false;
     }
 }
