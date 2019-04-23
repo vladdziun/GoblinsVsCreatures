@@ -111,8 +111,8 @@ public class BirdScript : MonoBehaviour
     void MoveToRandomSpawnPoint()
     {
         // Pick a random spawn point
-        int ndx = Random.Range(0, LevelSettings.settings.spawnPoints.Length - 1);
-        transform.localPosition = LevelSettings.settings.spawnPoints[ndx].localPosition;
+       // int ndx = Random.Range(0, LevelSettings.settings.spawnPoints.Length - 1);
+        //transform.localPosition = LevelSettings.settings.spawnPoints[ndx].localPosition;
     }
 
     void SetName(string name)

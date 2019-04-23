@@ -30,6 +30,7 @@
  */
 
 using UnityEngine;
+using System.Collections.Generic;
 
 // There is supposed to be only 1 of these.
 // Other objects can use LevelSettings.settings to
@@ -37,7 +38,7 @@ using UnityEngine;
 public class LevelSettings : MonoBehaviour
 {
     public Transform bottomOfLevel;
-    public Transform[] spawnPoints;
+    public List<GameObject> spawnPoints;
 
     static private LevelSettings s_settings;
 

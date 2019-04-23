@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static bool isGoblinsWin;
     public static bool isCreaturesWin;
     public GameObject startGameCanvas;
+    public GameObject mainGameCanvas;
 
     void Awake()
     {
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game started!");
         isGameStarted = true;
         startGameCanvas.GetComponent<Canvas>().enabled = false;
+        mainGameCanvas.GetComponent<Canvas>().enabled = true;
     }
 
     public void TestDb()

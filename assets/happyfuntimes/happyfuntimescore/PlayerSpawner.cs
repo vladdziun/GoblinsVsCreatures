@@ -49,8 +49,9 @@ namespace HappyFunTimes
     {
         public GameObject[] prefabToSpawnForPlayer;
         private int random;
+        private int randomSpawn;
         public GameManager gameManager;
-        Transform[] spawnPoints;
+        List<GameObject> spawnPoints;
 
         [Header("0 = unlimited")]
         public int maxPlayers = 0;
@@ -127,10 +128,13 @@ namespace HappyFunTimes
             {
                 m_log.Info("Spawn Player");
                 random = Random.Range(0, 2);
-                GameObject gameObject = (GameObject)Instantiate(prefabToSpawnForPlayer[random]);
+                randomSpawn = Random.Range(0, spawnPoints.Count);
+                GameObject gameObject = (GameObject)Instantiate(prefabToSpawnForPlayer[random],
+                    new Vector3(spawnPoints[randomSpawn].transform.position.x, spawnPoints[randomSpawn].transform.position.y, 0), Quaternion.identity);
                 gameObject.GetComponent<Player>().team = random;
                 gameManager.GetGoblinsBags();
                 gameManager.UpdateCount();
+                spawnPoints.RemoveAt(randomSpawn);
 
                 SpawnInfo spawnInfo = new SpawnInfo();
                 spawnInfo.netPlayer = netPlayer;
@@ -141,7 +145,8 @@ namespace HappyFunTimes
 
         GameObject GetPrefab(int ndx)
         {
-            return (GameObject)Instantiate(prefabToSpawnForPlayer[random]);
+            return (GameObject)Instantiate(prefabToSpawnForPlayer[random],
+                    new Vector3(spawnPoints[randomSpawn].transform.position.x, spawnPoints[randomSpawn].transform.position.y, 0), Quaternion.identity);
         }
 
         void StartNewPlayer(PlayerConnectMessageArgs e)
