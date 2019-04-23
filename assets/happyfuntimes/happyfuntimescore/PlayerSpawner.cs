@@ -50,6 +50,7 @@ namespace HappyFunTimes
         public GameObject[] prefabToSpawnForPlayer;
         private int random;
         public GameManager gameManager;
+        Transform[] spawnPoints;
 
         [Header("0 = unlimited")]
         public int maxPlayers = 0;
@@ -182,6 +183,7 @@ namespace HappyFunTimes
             {
                 StartHappyFunTimes();
             }
+            spawnPoints = GetComponent<LevelSettings>().spawnPoints;
         }
 
         void Update()

@@ -8,9 +8,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public static int moneyBags = 0;
     public static int goblins = 0;
+    public static int creatures = 0;
     public Text bagsCount;
     public Text goblinsCount;
+    public Text startGoblinsCount;
+    public Text startCreaturesCount;
+    public Text winText;
     public static bool isGameStarted = false;
+    public static bool isGoblinsWin;
+    public static bool isCreaturesWin;
+    public GameObject startGameCanvas;
 
     void Awake()
     {
@@ -33,12 +40,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(moneyBags <= 0)
+        if(moneyBags <= 0 && isGameStarted)
         {
-
+            isGameStarted = false;
+            winText.text = "GOBLINS WIN!";
+            isGoblinsWin = true;
         }
-        if(goblins <= 0 )
+        if(goblins <= 0 && isGameStarted)
         {
+            isGameStarted = false;
+            winText.text = "CREATURES WIN!";
+            isCreaturesWin = true;
 
         }
     }
@@ -54,5 +66,21 @@ public class GameManager : MonoBehaviour
     {
         moneyBags = GameObject.FindGameObjectsWithTag("Bag").Length;
         goblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
+        creatures = GameObject.FindGameObjectsWithTag("PlayerTeam0").Length;
+        startGoblinsCount.text = "Goblins Connected: " + goblins;
+        startCreaturesCount.text = "Creatures Connected: " + creatures;
+
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("Game started!");
+        isGameStarted = true;
+        startGameCanvas.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void TestDb()
+    {
+        Debug.Log("Test DB!");
     }
 }

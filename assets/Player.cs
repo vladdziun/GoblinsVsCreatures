@@ -7,16 +7,30 @@ public class Player : MonoBehaviour
     private GameObject gameManagerObject;
     public GameManager gameManager;
     public int team;
+
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.isCreaturesWin)
+        {
+            if (gameObject.tag == "PlayerTeam0")
+                animator.SetBool("isWinner", true);
+        }
+        else if (GameManager.isGoblinsWin)
+        {
+            if (gameObject.tag == "PlayerTeam1")
+                animator.SetBool("isWinner", true);
+        }
+
 
     }
 

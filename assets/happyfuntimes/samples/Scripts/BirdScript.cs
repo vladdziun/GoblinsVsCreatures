@@ -165,44 +165,48 @@ public class BirdScript : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        // Check if the center under us is touching the ground and
-        // pass that info to the Animator
-        m_grounded = Physics2D.OverlapCircle(groundCheck.position, m_groundRadius, whatIsGround);
-        m_animator.SetBool("Ground", true);
-
-        // Pass our vertical speed to the animator
-        // m_animator.SetFloat("vSpeed", m_rigidbody2d.velocity.y);
-
-        // Get left/right input (get both phone and local input)
-        //float move = m_hftInput.GetAxis("Horizontal") + Input.GetAxis("Horizontal");
-        h = m_hftInput.GetAxis("Horizontal") + Input.GetAxis("Horizontal");
-        v = -m_hftInput.GetAxis("Vertical") + Input.GetAxis("Vertical");
-
-
-        // Pass that to the animator
-        m_animator.SetFloat("Speed", Mathf.Abs(h));
-        m_animator.SetFloat("vSpeed", v);
-
-        // and move us
-        // m_rigidbody2d.velocity = new Vector2(move * maxSpeed, m_rigidbody2d.velocity.y);
-        movement.Set(h, v, 0f);
-
-
-        transform.position += movement.normalized * maxSpeed * Time.deltaTime;
-        if (h > 0 && !m_facingRight)
+    { 
+        if(GameManager.isGameStarted)
         {
-            Flip();
-        }
-        else if (h < 0 && m_facingRight)
-        {
-            Flip();
+            // Check if the center under us is touching the ground and
+            // pass that info to the Animator
+            m_grounded = Physics2D.OverlapCircle(groundCheck.position, m_groundRadius, whatIsGround);
+            m_animator.SetBool("Ground", true);
+
+            // Pass our vertical speed to the animator
+            // m_animator.SetFloat("vSpeed", m_rigidbody2d.velocity.y);
+
+            // Get left/right input (get both phone and local input)
+            //float move = m_hftInput.GetAxis("Horizontal") + Input.GetAxis("Horizontal");
+            h = m_hftInput.GetAxis("Horizontal") + Input.GetAxis("Horizontal");
+            v = -m_hftInput.GetAxis("Vertical") + Input.GetAxis("Vertical");
+
+
+            // Pass that to the animator
+            m_animator.SetFloat("Speed", Mathf.Abs(h));
+            m_animator.SetFloat("vSpeed", v);
+
+            // and move us
+            // m_rigidbody2d.velocity = new Vector2(move * maxSpeed, m_rigidbody2d.velocity.y);
+            movement.Set(h, v, 0f);
+
+
+            transform.position += movement.normalized * maxSpeed * Time.deltaTime;
+            if (h > 0 && !m_facingRight)
+            {
+                Flip();
+            }
+            else if (h < 0 && m_facingRight)
+            {
+                Flip();
+            }
+
+            if (transform.position.y < LevelSettings.settings.bottomOfLevel.position.y)
+            {
+                MoveToRandomSpawnPoint();
+            }
         }
 
-        if (transform.position.y < LevelSettings.settings.bottomOfLevel.position.y)
-        {
-            MoveToRandomSpawnPoint();
-        }
     }
 
     void Flip()
