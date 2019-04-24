@@ -11,6 +11,7 @@ public class UpgradeManager : MonoBehaviour
     public SpriteRenderer keySprite;
     public SpriteRenderer shovelSprite;
     public SpriteRenderer speedUpSprite;
+    public TrailRenderer speedUpTrail;
 
     private HFTGamepad m_gamepad;
     private HFTInput m_hftInput;
@@ -33,10 +34,16 @@ public class UpgradeManager : MonoBehaviour
         if (isSpeedUp && speedUpSprite.enabled == false)
         {
             speedUpSprite.enabled = true;
+            speedUpTrail.enabled = true;
             StartCoroutine(SpeedUp());
         }
         if (!isKey)
+        {
+            if (keySprite == null)
+                return;
             keySprite.enabled = false;
+        }
+            
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -77,5 +84,7 @@ public class UpgradeManager : MonoBehaviour
         gameObject.GetComponent<BirdScript>().maxSpeed = 4;
         speedUpSprite.enabled = false;
         isSpeedUp = false;
+        yield return new WaitForSeconds(1);
+        speedUpTrail.enabled = false;
     }
 }
