@@ -42,6 +42,7 @@ public class BirdScript : MonoBehaviour
     public float jumpForce = 700f;
     public Transform nameTransform;
     public bool deleteWhenDisconnected = true;
+    public GameManager gameManager;
 
     // this is the base color of the avatar.
     // we need to know it because we need to know what color
@@ -86,6 +87,8 @@ public class BirdScript : MonoBehaviour
 
         // Delete ourselves if disconnected
         m_gamepad.OnDisconnect += Remove;
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Remove()
@@ -235,5 +238,4 @@ public class BirdScript : MonoBehaviour
     {
         SetName(m_gamepad.Name);
     }
-
 }

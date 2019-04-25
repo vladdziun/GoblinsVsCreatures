@@ -10,10 +10,8 @@ public class TubeStart : MonoBehaviour
     {
         if (col.gameObject.tag == "PlayerTeam1" || col.gameObject.tag == "PlayerTeam0")
         {
-            if(end.transform.position.x > transform.position.x)
-                col.transform.position = end.transform.position + new Vector3(1, -0.3f, 0);
-            else
-                col.transform.position = end.transform.position + new Vector3(-1, -0.3f, 0);
+                col.transform.position = end.transform.position + new Vector3(0, 0, 0);
+
         }
     }
 }

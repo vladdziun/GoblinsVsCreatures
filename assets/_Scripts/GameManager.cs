@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
             isCreaturesWin = true;
 
         }
+
+        //TODO: 2 lines below should be removed from update
+        goblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
+        goblinsCount.text = "Goblins Left: " + goblins;
     }
 
     public void UpdateCount()
