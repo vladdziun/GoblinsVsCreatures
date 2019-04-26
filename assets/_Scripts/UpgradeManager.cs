@@ -60,6 +60,19 @@ public class UpgradeManager : MonoBehaviour
                 }
             }
         }
+
+        if (col.gameObject.tag == "Door" && gameObject.GetComponent<Player>().team == 0)
+        {
+            if (m_hftInput.GetButtonDown("fire1") || Input.GetKeyDown("space"))
+            {
+                Debug.Log("Trying close the door");
+                if (isKey)
+                {
+                    col.gameObject.GetComponent<DoorScript>().CloseDoor();
+                    isKey = false;
+                }
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -72,7 +85,7 @@ public class UpgradeManager : MonoBehaviour
 
     IEnumerator Shovel()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         shovelSprite.enabled = false;
         isShovel = false;
     }

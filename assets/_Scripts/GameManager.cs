@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public static int moneyBags = 0;
     public static int goblins = 0;
+    public int maxGoblins;
     public static int creatures = 0;
     public Text bagsCount;
     public Text goblinsCount;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GetGoblinsBags();
+
         bagsCount.text = "Bags Left: " + moneyBags;
         goblinsCount.text = "Goblins Left: " + goblins;
     }
@@ -57,10 +59,23 @@ public class GameManager : MonoBehaviour
             isCreaturesWin = true;
 
         }
+        if (!isGameStarted)
+            maxGoblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
+        if (isGameStarted)
+        {
+            int newMaxGoblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
+            if (maxGoblins != newMaxGoblins)
+            {
+                goblins = goblins - (maxGoblins - newMaxGoblins);
+                maxGoblins = newMaxGoblins;
+                UpdateCount();
+            }
+        }
+
 
         //TODO: 2 lines below should be removed from update
-        goblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
-        goblinsCount.text = "Goblins Left: " + goblins;
+        //goblins = GameObject.FindGameObjectsWithTag("PlayerTeam1").Length;
+        //goblinsCount.text = "Goblins Left: " + goblins;
     }
 
     public void UpdateCount()
@@ -91,5 +106,9 @@ public class GameManager : MonoBehaviour
     public void TestDb()
     {
         Debug.Log("Test DB!");
+    }
+    public void DecreaseGoblins()
+    {
+        goblins--;
     }
 }
