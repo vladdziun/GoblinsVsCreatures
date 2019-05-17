@@ -30584,7 +30584,7 @@ PrefabInstance:
     - target: {fileID: 1283944723611690180, guid: 942ffe5f3d87ba84b949d3511228395a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4418027
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 1283944723611690180, guid: 942ffe5f3d87ba84b949d3511228395a,
         type: 3}
@@ -30896,6 +30896,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tubes
       objectReference: {fileID: 0}
+    - target: {fileID: 6670197477625688108, guid: f6b109953c0be2a4b8b26f351fe8179b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.569
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670197477625688108, guid: f6b109953c0be2a4b8b26f351fe8179b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 6670197479036601677, guid: f6b109953c0be2a4b8b26f351fe8179b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30950,16 +30960,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670197477625688108, guid: f6b109953c0be2a4b8b26f351fe8179b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.569
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670197477625688108, guid: f6b109953c0be2a4b8b26f351fe8179b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 6670197477899901625, guid: f6b109953c0be2a4b8b26f351fe8179b,
         type: 3}
